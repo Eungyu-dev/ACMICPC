@@ -9,6 +9,9 @@ https://www.acmicpc.net/workbook/codeplus
     Compiler: g++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0
     Main language: C++
 
+## 2. 컴파일
+    g++ -o $(filename).o $(filename)
+
 ## #. 정보
 박은규 – ekpark97.dev@gmail.com
 
