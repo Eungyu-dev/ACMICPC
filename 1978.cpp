@@ -1,40 +1,38 @@
 #include <iostream>
-#include <vector>
 
-std::vector<int> getPrimeList(int max){
-    int i, j;
-    std::vector<int> list;
-    for(i = 2; i <= max; i++){
-        for(j = 2; j < i; j++){
-            if (i % j == 0){
-                break;
+/**
+ * [Sieve of Eratóstenes]
+ * true: Not prime.
+ * false: Prime.
+ */
+bool* getPrimeArray(int max){
+    bool *array = new bool[max + 1];
+    array[0] = true;
+    array[1] = true;
+    
+    for(int i = 2; i * i <= max; i++){
+        if(array[i] == false){
+            for (int j = i * i; j <= max; j += i){
+                array[j] = true;
             }
         }
-        if (i == j){
-            list.push_back(i);
-        }
     }
-    return list;
+    return array;
 }
 
 int main(int argc, char* argv[]){
     int N;
     std::cin >> N;
-    std::vector<int> primeList = getPrimeList(1000);
+    bool* primeArray = getPrimeArray(1000);
 
-    int arr[N];
+    int array[N];
     for(int i = 0; i < N; i++){
-        std::cin >> arr[i];
+        std::cin >> array[i];
     }
 
     int count = 0;
     for(int i = 0; i < N; i++){
-        for (std::vector<int>::iterator it = primeList.begin(); it != primeList.end(); it++){
-            if (arr[i] == *it){
-                count++;
-                break;
-            }
-        }
+        if(!primeArray[array[i]]) count++;
     }
     std::cout << count << std::endl;
 
